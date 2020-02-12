@@ -1,0 +1,26 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  
+  <script type="text/babel">
+    function Greetings(){
+      let [name, setName] = React.useState(window.localStorage.getItem('name') || '');
+
+      React.useEffect(() => {
+        window.localStorage.setItem('name', name);
+      })
+
+      const handleChange = (event) => setName(event.target.value);
+      
+      return (
+        <React.Fragment>
+          <input onChange={event => handleChange(event)} placeholder="please enter your input"/>
+          <h1>Greetings {name}!!</h1>
+        </React.Fragment>
+      )
+    }
+    ReactDOM.render(<Greetings/>, document.getElementById('root'))
+  </script>
+</body>
